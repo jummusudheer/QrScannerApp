@@ -7,6 +7,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -16,13 +18,12 @@ import com.example.qrscanner.R
 import com.example.qrscanner.databinding.FragmentFoodBinding
 import com.squareup.picasso.Picasso
 
-
 class FoodFragment : Fragment() {
 
     private lateinit var adapter: FoodAdapter
-    private var foodList: MutableList<FoodItem> = mutableListOf()
+    private lateinit var foodViewModel:FoodViewModel
+//    private var foodList: MutableList<FoodItem> = mutableListOf()
     private lateinit var binding: FragmentFoodBinding
-
     private lateinit var editText: EditText
     private lateinit var requestQueue: RequestQueue
     private val apiKey = "https://api.spoonacular.com/recipes/715538/similar"
@@ -31,16 +32,14 @@ class FoodFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        foodList.add(FoodItem("Kellogg's", "Delicious Kellogg's", "https://i5.walmartimages.com/asr/9c9ef863-4f03-4a5a-bf1c-18ff3d948e8b_1.352903b24dfbb0664dc16b4b9d7976ea.jpeg"))
-        foodList.add(FoodItem("Badam", "Amazing Badam Mix recipe", "https://www.quicklly.com/upload_images/product/1603411078-mtr-badam-drink-mix.jpg"))
+//        foodList.add(FoodItem("Kellogg's", "Delicious Kellogg's", "https://i5.walmartimages.com/asr/9c9ef863-4f03-4a5a-bf1c-18ff3d948e8b_1.352903b24dfbb0664dc16b4b9d7976ea.jpeg"))
+//        foodList.add(FoodItem("Badam", "Amazing Badam Mix recipe", "https://www.quicklly.com/upload_images/product/1603411078-mtr-badam-drink-mix.jpg"))
 
         //        return inflater.inflate(R.layout.fragment_food, container, false)
         binding= FragmentFoodBinding.inflate(inflater, container, false)
-
+        foodViewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
         return binding.root
     }
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,18 +47,18 @@ class FoodFragment : Fragment() {
 
 
 
-       binding.searchView.setOnClickListener {
-           val filteredRecipes = filterRecipesByName(searchQuery = "Pizza")
-           if (filteredRecipes.isNotEmpty()) {
-               val selectedRecipe = filteredRecipes[0]
-               displayRecipe(selectedRecipe)
-           } else {
-               Toast.makeText(requireContext(), "Please enter a food item", Toast.LENGTH_SHORT)
-                   .show()
-           }
-       }
-        // Set up RecyclerView
-        adapter = FoodAdapter(foodList)
+//       binding.searchView.setOnClickListener {
+//           val filteredRecipes = filterRecipesByName(searchQuery = "Pizza")
+//           if (filteredRecipes.isNotEmpty()) {
+//               val selectedRecipe = filteredRecipes[0]
+//               displayRecipe(selectedRecipe)
+//           } else {
+//               Toast.makeText(requireContext(), "Please enter a food item", Toast.LENGTH_SHORT)
+//                   .show()
+//           }
+//       }
+//        // Set up RecyclerView
+        adapter = FoodAdapter(foodViewModel.foodList)
        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
@@ -68,21 +67,18 @@ class FoodFragment : Fragment() {
     }
 
     // Function to filter recipes by name
-    fun filterRecipesByName(searchQuery: String): List<FoodItem> {
-        return foodList.filter {
-            it.name.contains(searchQuery, ignoreCase = true)
-            it.description.contains(searchQuery,ignoreCase = true)
-        }
-    }
+//    fun filterRecipesByName(searchQuery: String): List<FoodItem> {
+//        return foodList.filter {
+//            it.name.contains(searchQuery, ignoreCase = true)
+//            it.description.contains(searchQuery,ignoreCase = true)
+//        }
+//    }
 
     fun displayRecipe(recipe: FoodItem){
         println("Name: ${recipe.name}")
         println("Description: ${recipe.description}")
         println("Image: ${recipe.imageUrl}")
     }
-
-
-
 
     private fun fetchRecipes(foodItem: String) {
         val url = "https://api.spoonacular.com/recipes/search?query=$foodItem&apiKey=$apiKey"
