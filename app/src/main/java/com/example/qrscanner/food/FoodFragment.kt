@@ -1,22 +1,24 @@
 package com.example.qrscanner.food
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.example.qrscanner.R
+import com.example.qrscanner.data.model.FoodItem
 import com.example.qrscanner.databinding.FragmentFoodBinding
-import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 
 class FoodFragment : Fragment() {
 
@@ -44,9 +46,6 @@ class FoodFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Add more recipes as needed
-
-
-
 //       binding.searchView.setOnClickListener {
 //           val filteredRecipes = filterRecipesByName(searchQuery = "Pizza")
 //           if (filteredRecipes.isNotEmpty()) {
@@ -58,11 +57,18 @@ class FoodFragment : Fragment() {
 //           }
 //       }
 //        // Set up RecyclerView
-        adapter = FoodAdapter(foodViewModel.foodList)
+        adapter = FoodAdapter(emptyList())
        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
-        generateFoodData()
+        foodViewModel.foodItems.observe(viewLifecycleOwner, Observer { foodItems ->
+            Log.d("FoodList","foodItems observed with size:${foodItems.size}")
+            adapter.submitList(foodItems)
+        })
+
+        foodViewModel.loadFoodItems()
+
+      //  generateFoodData()
 
     }
 

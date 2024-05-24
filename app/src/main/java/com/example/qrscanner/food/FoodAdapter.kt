@@ -8,15 +8,15 @@ import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.qrscanner.R
+import com.example.qrscanner.data.model.FoodItem
 import com.example.qrscanner.databinding.ItemRecipeBinding
-import com.example.qrscanner.databinding.ItemRecipeBinding.inflate
 import com.squareup.picasso.Picasso
 
 
-class FoodAdapter(private val recipes: List<FoodItem>) :
+class FoodAdapter(private var recipes: List<FoodItem>) :
     RecyclerView.Adapter<FoodAdapter.RecipeViewHolder>(), Filterable {
 
-    private var filteredRecipes: List<FoodItem> = recipes
+   private var filteredRecipes: List<FoodItem> = recipes
     private lateinit var binding: ItemRecipeBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
@@ -26,7 +26,7 @@ class FoodAdapter(private val recipes: List<FoodItem>) :
     }
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
-        holder.bind(filteredRecipes[position])
+       holder.bind(filteredRecipes[position])
         val foodList = null
         val foodItem =filteredRecipes[position]
         binding.foodItemName.text=recipes[position].name
@@ -73,5 +73,13 @@ val filteredList = mutableListOf<FoodItem>()
          }
         }
     }
+
+    fun submitList(newRecipes: List<FoodItem>) {
+      //  TODO("Not yet implemented")
+        recipes = newRecipes
+        filteredRecipes = newRecipes
+         notifyDataSetChanged()
+    }
+
 
 }

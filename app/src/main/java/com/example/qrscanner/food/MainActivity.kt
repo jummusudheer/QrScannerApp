@@ -15,8 +15,9 @@ import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 import com.example.qrscanner.R
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(),  ZXingScannerView.ResultHandler {
     private lateinit var scannerView: ZXingScannerView
     private lateinit var resultTextView: TextView
