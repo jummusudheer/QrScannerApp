@@ -1,9 +1,7 @@
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.qrscanner.data.model.FoodItem
-import com.example.qrscanner.data.repository.FoodRepository
 import com.example.qrscanner.domain.usecase.GetFoodItemsUseCase
-import com.example.qrscanner.food.FoodViewModel
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

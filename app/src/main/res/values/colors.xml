@@ -20,4 +20,7 @@
     <color name="lightGray">#D1D0D0</color>
     <color name="darkBrown">#2B2828</color>
 
+    <color name="red">#FF0000</color> <!-- Red -->
+    <color name="green">#00FF00</color> <!-- Green -->
+
 </resources>

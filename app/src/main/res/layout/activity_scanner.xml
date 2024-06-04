@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+    <FrameLayout
+        android:id="@+id/overlay_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <me.dm7.barcodescanner.zxing.ZXingScannerView
+        android:id="@+id/scanner_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:borderColor="@android:color/transparent"
+        app:maskColor="@android:color/transparent"
+        android:background="@android:color/transparent"/>
+
+            <View
+                android:id="@+id/top_left_edge_top"
+                android:layout_width="50dp"
+                android:layout_height="10dp"
+                android:layout_gravity="top|start"
+                android:background="@color/colorPrimaryDark"
+                tools:ignore="ContentDescription" />
+            <View
+                android:id="@+id/top_left_edge"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_gravity="top|start"
+                android:background="@color/colorPrimaryDark"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:id="@+id/top_right_edge_top"
+                android:layout_width="50dp"
+                android:layout_height="10dp"
+                android:layout_gravity="top|end"
+                android:background="@color/colorPrimaryDark"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:id="@+id/top_right_edge"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_gravity="top|end"
+                android:background="@color/colorPrimaryDark"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:id="@+id/bottom_left_edge_left"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom|start"
+                android:background="@color/colorPrimaryDark"
+                tools:ignore="ContentDescription" />
+            <View
+                android:id="@+id/bottom_left_edge"
+                android:layout_width="50dp"
+                android:layout_height="10dp"
+                android:layout_gravity="bottom|start"
+                android:background="@color/colorPrimaryDark"
+                tools:ignore="ContentDescription" />
+
+
+            <View
+                android:id="@+id/bottom_right_edge_right"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom|end"
+                android:background="@color/colorPrimaryDark"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:id="@+id/bottom_right_edge"
+                android:layout_width="50dp"
+                android:layout_height="10dp"
+                android:layout_gravity="bottom|end"
+                android:background="@color/colorPrimaryDark"
+                tools:ignore="ContentDescription" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </layout>

@@ -1,10 +1,9 @@
 package com.example.qrscanner.ui
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.example.qrscanner.food.MainActivity
+import com.example.qrscanner.MainActivity
 import com.example.qrscanner.R
 
 class SplashActivity : AppCompatActivity() {

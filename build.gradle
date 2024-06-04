@@ -6,7 +6,6 @@ buildscript {
         hilt_version = "2.44"
     }
 
-
     repositories {
         google()
         jcenter()
@@ -29,10 +28,7 @@ buildscript {
         //Hilt class path new
       classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
 
-
     }
-
-
 }
 
 plugins {

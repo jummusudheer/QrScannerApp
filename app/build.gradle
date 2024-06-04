@@ -1,8 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'dagger.hilt.android.plugin'
-    id 'kotlin-kapt'
+   
 }
 
 android {
@@ -19,6 +18,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
     buildFeatures {
         viewBinding true
         dataBinding true
@@ -26,6 +26,12 @@ android {
 
 
     buildTypes {
+
+        debug {
+            debuggable true
+
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -51,7 +57,7 @@ dependencies {
 //    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     implementation 'me.dm7.barcodescanner:zxing:1.9.8'
-   // implementation 'com.google.zxing:core:3.4.1'
+    // implementation 'com.google.zxing:core:3.4.1'
     implementation 'com.journeyapps:zxing-android-embedded:4.2.0'
     implementation 'com.android.volley:volley:1.2.0'
     //picasso
@@ -62,9 +68,6 @@ dependencies {
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
-    //hilt dependencies
-    implementation 'com.google.dagger:hilt-android:2.44'
-    kapt 'com.google.dagger:hilt-android-compiler:2.44'
 
 
     //unit Test
